@@ -6,14 +6,16 @@
 //  Copyright © 2017 Becky Chan. All rights reserved.
 //
 
-//import UIKit
-//import MapKit
+import UIKit
+import MapKit
 //
-//class pawTracker: NSObject {
-//    var pawPrints = [geoPointer]()
-//    override init(){
-//        var pawPrints = [geoPointer[CLLocationCoordinate2DMake(CLLocationDegrees, CLLocationDegrees)]]
-//        
+//class pawTracker: NSObject, MSOverlay {
+//    var coordinate: CLLocationCoordinate2D
+//    var boundingMapRect: MKMapRect
+//    
+//    init(mapViewController: mapViewController){
+//        boundingMapRect = mapViewController.overlayBoundingMapRect
+//        coordinate = mapViewController.modCoordinate
 //    }
 //
 //}

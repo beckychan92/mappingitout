@@ -12,16 +12,8 @@ import SwiftyJSON
 import MapKit
 
 class mapViewController: UIViewController, MKMapViewDelegate {
-    
-    //MARK: Annotations
-    //MARK: Overlays
-    //MARK: Map setup
-    //MARK: Life Cycle
-    
-    //mapView Outlet
+
     @IBOutlet weak var mapIt: MKMapView!
-    
-    //Timer for 0.5 seconds
     @IBOutlet weak var timerLabel: UILabel!
     
     var seconds = 60
@@ -31,12 +23,12 @@ class mapViewController: UIViewController, MKMapViewDelegate {
     var key: Int = 0
     var latitude: Double = 0.0
     var longitude: Double = 0.0
+    var coordStorage: [Double:Double] = [:]
     
     
     let pawPin = UIImage(named: "paw")
     
 
-    
 
 
     func parseData(){
@@ -67,34 +59,24 @@ class mapViewController: UIViewController, MKMapViewDelegate {
         while key != sizeOfArr{
             latitude = arr[key][0]
             longitude = (arr[key][1])
-        
+            coordStorage[latitude] = longitude
             //Bug: Some of the lat/long round up / down
             var geoCoordinates = CLLocationCoordinate2DMake(latitude, longitude)
             //reset region
             let region = MKCoordinateRegionMakeWithDistance(geoCoordinates, 5000, 5000)
             mapIt.setRegion(region, animated: true)
             
-            geoPointer.init(lat: latitude, long: longitude)
+//            coordStorage = coordStorage.updateValue(latitude, longitude)
             
-            print(region)
+
+//            print(region)
             key = key + 1
         }
+        print("hello coorStorage")
+        print(coordStorage)
         
     }
     
-//    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-////        var view : MKPinAnnotationView
-//        
-//        guard let annotation = annotation as? geoPointer else {return nil}
-//        
-//        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier) as? MKPinAnnotationView {
-//            view = dequeuedView
-//        }else { //make a new view
-//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
-//        }
-//        return view
-//    }
-//    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? geoPointer{
             if let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier){
