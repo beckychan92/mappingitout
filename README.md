@@ -14,5 +14,5 @@ geo-coordinate point provided from the JSON file.
 initial) point to the next geo-coordinate point.
 - [X] User should be able to pan and zoom the map interface, without affecting the
 in-map overlay's position relative to the geo-spatial coordinate plane.
-- [X]] User's touch events should not block the animation from being performed,
+- [X] User's touch events should not block the animation from being performed,
 and vice-versa.
