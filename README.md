@@ -21,12 +21,15 @@ and vice-versa.
 
 ## MappingItOut
 
+<a href="http://imgur.com/QTXSbXz"><img src="http://i.imgur.com/QTXSbXz.png" title="source: imgur.com" /></a>
+
 <a href="http://imgur.com/s4IyRcN"><img src="http://i.imgur.com/s4IyRcN.png" title="source: imgur.com" /></a>
 
 ## Notes
 
 Describe any challenges encountered while building the app.
-1. Parsing local data with Swift 
+1. Parsing local data with Swift
+2. Apple loads all annotations at once
 
 ## License
 

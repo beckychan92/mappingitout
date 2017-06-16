@@ -23,6 +23,7 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     private var mapChangedFromUserInteraction = false
+    var annotation: MKPointAnnotation = MKPointAnnotation()
     
     
 
@@ -109,10 +110,9 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func annotateMap(location: CLLocationCoordinate2D){
-        let annotation = MKPointAnnotation()
         annotation.coordinate = location
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
-            self.mapIt.addAnnotation(annotation)
+            self.mapIt.addAnnotation(self.annotation)
         })
         
     }
@@ -124,12 +124,10 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     func annotation(location: CLLocationCoordinate2D){
-        
-        let annotation = MKPointAnnotation()
         annotation.coordinate = location
   
         delayWithSeconds(0.5) {
-            self.mapIt.addAnnotation(annotation)
+            self.mapIt.addAnnotation(self.annotation)
         }
         
     }
