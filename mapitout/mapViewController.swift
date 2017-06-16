@@ -16,14 +16,16 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var isRotateEnabled: Bool = true
 
     @IBOutlet weak var mapIt: MKMapView!
-    @IBOutlet weak var timerLabel: UILabel!
+
     
     var arr: [[Double]] = []
     var key: Int = 0
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     private var mapChangedFromUserInteraction = false
-//    let pawPin = UIImage(named: "paw")!
+    
+    
+
 
     let location: CLLocationCoordinate2D? = nil
 
@@ -55,13 +57,21 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         while key != sizeOfArr{
             latitude = arr[key][0]
             longitude = (arr[key][1])
-            zoomIn(latitude: latitude, longitude: longitude, sizeOfArr: sizeOfArr)
+            let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+            
+            delayWithSeconds(0.5){
+                self.animation(location: location)
+            
+            }
+            mapIt.removeAnnotations(mapIt.annotations)
+
+            zoomIn(latitude: latitude, longitude: longitude)
             key = key + 1
         }
     }
 
 
-    func zoomIn(latitude: Double, longitude: Double, sizeOfArr: Int){
+    func zoomIn(latitude: Double, longitude: Double){
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
         let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
@@ -71,58 +81,85 @@ class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         print(location)
 
     }
-
+    
+    func populateMap(){
+        var count = 0
+        while (count < self.arr.count){
+            let latitude = getLatAt(index: count)
+            let longitude = getLongAt(index: count)
+            let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+            removePrevious()
+            annotateMap(location: location)
+            count += 1
+        }
+    }
+    
+    func getLatAt(index: Int) -> Double{
+        return self.arr[index][0]
+    }
+    
+    func getLongAt(index: Int) -> Double{
+        return self.arr[index][1]
+    }
+    
+    func removePrevious(){
+        let allAnnotations = self.mapIt.annotations
+        
+        self.mapIt.removeAnnotations(allAnnotations)
+    }
+    
+    func annotateMap(location: CLLocationCoordinate2D){
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5), execute: {
+            self.mapIt.addAnnotation(annotation)
+        })
+        
+    }
+    
+    func pinMap(){
+        let startLoc = self.arr[0][0]
+        let startLat = self.arr[0][1]
+        self.zoomIn(latitude: startLoc, longitude: startLat)
+    }
     
     func annotation(location: CLLocationCoordinate2D){
+        
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
   
-        delay(bySeconds: 0.5) {
+        delayWithSeconds(0.5) {
             self.mapIt.addAnnotation(annotation)
         }
         
     }
     
     
-    
-//From Stack Overflow: Start
-    func delay(bySeconds seconds: Double, dispatchLevel: DispatchLevel = .main, closure: @escaping () -> Void) {
-        let dispatchTime = DispatchTime.now() + seconds
-        dispatchLevel.dispatchQueue.asyncAfter(deadline: dispatchTime, execute: closure)
-    }
-    public enum DispatchLevel {
-        case main, userInteractive, userInitiated, utility, background
-        var dispatchQueue: DispatchQueue {
-            switch self {
-            case .main:                 return DispatchQueue.main
-            case .userInteractive:      return DispatchQueue.global(qos: .userInteractive)
-            case .userInitiated:        return DispatchQueue.global(qos: .userInitiated)
-            case .utility:              return DispatchQueue.global(qos: .utility)
-            case .background:           return DispatchQueue.global(qos: .background)
-            }
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
         }
     }
-//End
 
 
     func animation(location: CLLocationCoordinate2D){
-//        super.viewDidLoad(animation)
-        delay(bySeconds: 1.5, dispatchLevel: .background){
+        delayWithSeconds(1.5){
             UIView.animate(withDuration: 50, delay: 0.5, animations: {
                 self.annotation(location: location)
-            })
-        }
+            }
+        )}
     }
-
     
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapIt.delegate = self
         parseData()
         accessData()
-        mapIt.delegate = self
-        self.mapIt.delegate = self
+        pinMap()
+        populateMap()
+        
         
     }
     
