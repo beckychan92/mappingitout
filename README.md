@@ -19,7 +19,7 @@ in-map overlay's position relative to the geo-spatial coordinate plane.
 - [X] User's touch events should not block the animation from being performed,
 and vice-versa.
 
-##MappingItOut
+## MappingItOut
 
 <a href="http://imgur.com/s4IyRcN"><img src="http://i.imgur.com/s4IyRcN.png" title="source: imgur.com" /></a>
 
