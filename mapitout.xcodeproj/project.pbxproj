@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2D5A1E2DB86D30D486E709E7 /* Pods_mapitout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54F2D6CF33B5EAAB36861A2D /* Pods_mapitout.framework */; };
-		C5245B911EF30146000EE430 /* pawTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5245B901EF30146000EE430 /* pawTracker.swift */; };
 		C52C1ADA1EF121D0005DF525 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C52C1AD91EF121D0005DF525 /* MapKit.framework */; };
 		C55721FF1EEDFDA2005CBFF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55721FE1EEDFDA2005CBFF4 /* AppDelegate.swift */; };
 		C55722041EEDFDA2005CBFF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55722021EEDFDA2005CBFF4 /* Main.storyboard */; };
@@ -19,7 +18,6 @@
 		C56B017D1EEE26D800C7D2B2 /* coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = C56B017C1EEE26D800C7D2B2 /* coordinates.json */; };
 		C5D5801B1EF1B5F9003812ED /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5801A1EF1B5F9003812ED /* mapViewController.swift */; };
 		C5D6C9D61EF28B77008F4548 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5D6C9D51EF28B77008F4548 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		C5D6C9D81EF28F8A008F4548 /* geoPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D6C9D71EF28F8A008F4548 /* geoPointer.swift */; };
 		DE619E7D2680274D6EB45539 /* Pods_mapitoutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D557D6C0569FECFE6AB22A3D /* Pods_mapitoutUITests.framework */; };
 		E6F144E9BBAEFD7407774424 /* Pods_mapitoutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68EF120782C79AC65A7F7815 /* Pods_mapitoutTests.framework */; };
 /* End PBXBuildFile section */
@@ -49,7 +47,6 @@
 		6F5C019158781ABD168611DB /* Pods-mapitoutUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapitoutUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mapitoutUITests/Pods-mapitoutUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		87984DA7BAB1F22D169EE969 /* Pods-mapitout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapitout.release.xcconfig"; path = "Pods/Target Support Files/Pods-mapitout/Pods-mapitout.release.xcconfig"; sourceTree = "<group>"; };
 		B61DDB47B45CD640BFB4E623 /* Pods-mapitoutTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapitoutTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-mapitoutTests/Pods-mapitoutTests.release.xcconfig"; sourceTree = "<group>"; };
-		C5245B901EF30146000EE430 /* pawTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pawTracker.swift; sourceTree = "<group>"; };
 		C52C1AD91EF121D0005DF525 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C55721FB1EEDFDA2005CBFF4 /* mapitout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapitout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55721FE1EEDFDA2005CBFF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +63,6 @@
 		C56B017C1EEE26D800C7D2B2 /* coordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coordinates.json; sourceTree = "<group>"; };
 		C5D5801A1EF1B5F9003812ED /* mapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = mapViewController.swift; path = mapitout/mapViewController.swift; sourceTree = "<group>"; };
 		C5D6C9D51EF28B77008F4548 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/mapitout-cvgktwfwwejeodedjwinjqovkxgt/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
-		C5D6C9D71EF28F8A008F4548 /* geoPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = geoPointer.swift; sourceTree = "<group>"; };
 		D557D6C0569FECFE6AB22A3D /* Pods_mapitoutUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mapitoutUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61E86BDF80DADFF23BEADF3 /* Pods-mapitoutTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapitoutTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mapitoutTests/Pods-mapitoutTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,7 +113,6 @@
 		C55721F21EEDFDA1005CBFF4 = {
 			isa = PBXGroup;
 			children = (
-				C5D6C9D91EF28FB0008F4548 /* Model */,
 				C5D5801C1EF1B5FF003812ED /* VC */,
 				C55721FD1EEDFDA2005CBFF4 /* mapitout */,
 				C55722121EEDFDA2005CBFF4 /* mapitoutTests */,
@@ -175,15 +170,6 @@
 				C5D5801A1EF1B5F9003812ED /* mapViewController.swift */,
 			);
 			name = VC;
-			sourceTree = "<group>";
-		};
-		C5D6C9D91EF28FB0008F4548 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C5245B901EF30146000EE430 /* pawTracker.swift */,
-				C5D6C9D71EF28F8A008F4548 /* geoPointer.swift */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		E41461C4B941AD2F3328CA91 /* Frameworks */ = {
@@ -481,10 +467,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5D6C9D81EF28F8A008F4548 /* geoPointer.swift in Sources */,
 				C5D5801B1EF1B5F9003812ED /* mapViewController.swift in Sources */,
 				C55721FF1EEDFDA2005CBFF4 /* AppDelegate.swift in Sources */,
-				C5245B911EF30146000EE430 /* pawTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

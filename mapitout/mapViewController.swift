@@ -11,25 +11,21 @@ import UIKit
 import SwiftyJSON
 import MapKit
 
-class mapViewController: UIViewController, MKMapViewDelegate {
+class mapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    var isZoomEnabled: Bool = true
+    var isRotateEnabled: Bool = true
 
     @IBOutlet weak var mapIt: MKMapView!
     @IBOutlet weak var timerLabel: UILabel!
     
-    var seconds = 60
-    var timer = Timer()
-    var isTimerRunning = false
     var arr: [[Double]] = []
     var key: Int = 0
     var latitude: Double = 0.0
     var longitude: Double = 0.0
-    var coordStorage: [Double:Double] = [:]
-    
-    
-    let pawPin = UIImage(named: "paw")
-    
+    private var mapChangedFromUserInteraction = false
+//    let pawPin = UIImage(named: "paw")!
 
-
+    let location: CLLocationCoordinate2D? = nil
 
     func parseData(){
         if let path = Bundle.main.path(forResource: "coordinates", ofType: "json"){
@@ -50,63 +46,84 @@ class mapViewController: UIViewController, MKMapViewDelegate {
         }else {
             print("cannot find")
         }
-        
         accessData()
     }
     
+    
     func accessData(){
-        let sizeOfArr: Int = arr.endIndex
+        let sizeOfArr: Int = self.arr.endIndex
         while key != sizeOfArr{
             latitude = arr[key][0]
             longitude = (arr[key][1])
-            coordStorage[latitude] = longitude
-            //Bug: Some of the lat/long round up / down
-            var geoCoordinates = CLLocationCoordinate2DMake(latitude, longitude)
-            //reset region
-            let region = MKCoordinateRegionMakeWithDistance(geoCoordinates, 5000, 5000)
-            mapIt.setRegion(region, animated: true)
-            
-//            coordStorage = coordStorage.updateValue(latitude, longitude)
-            
-
-//            print(region)
+            zoomIn(latitude: latitude, longitude: longitude, sizeOfArr: sizeOfArr)
             key = key + 1
         }
-        print("hello coorStorage")
-        print(coordStorage)
+    }
+
+
+    func zoomIn(latitude: Double, longitude: Double, sizeOfArr: Int){
+        let span: MKCoordinateSpan = MKCoordinateSpanMake(0.1, 0.1)
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+        mapIt.setRegion(region, animated: true)
+        animation(location: location)
+        print("this is ")
+        print(location)
+
+    }
+
+    
+    func annotation(location: CLLocationCoordinate2D){
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+  
+        delay(bySeconds: 0.5) {
+            self.mapIt.addAnnotation(annotation)
+        }
         
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? geoPointer{
-            if let view = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.identifier){
-                print("woof")
-                return view
-            }else{
-                let view = MKAnnotationView(annotation: annotation, reuseIdentifier: annotation.identifier)
-                view.image = #imageLiteral(resourceName: "paw")
-                view.isEnabled = true
-                view.canShowCallout = true
-                view.leftCalloutAccessoryView = UIImageView(image: pawPin)
-                print("woof woof")
-                return view
+    
+    
+//From Stack Overflow: Start
+    func delay(bySeconds seconds: Double, dispatchLevel: DispatchLevel = .main, closure: @escaping () -> Void) {
+        let dispatchTime = DispatchTime.now() + seconds
+        dispatchLevel.dispatchQueue.asyncAfter(deadline: dispatchTime, execute: closure)
+    }
+    public enum DispatchLevel {
+        case main, userInteractive, userInitiated, utility, background
+        var dispatchQueue: DispatchQueue {
+            switch self {
+            case .main:                 return DispatchQueue.main
+            case .userInteractive:      return DispatchQueue.global(qos: .userInteractive)
+            case .userInitiated:        return DispatchQueue.global(qos: .userInitiated)
+            case .utility:              return DispatchQueue.global(qos: .utility)
+            case .background:           return DispatchQueue.global(qos: .background)
             }
         }
-        print("woof woof woof")
-        return nil
     }
+//End
+
+
+    func animation(location: CLLocationCoordinate2D){
+//        super.viewDidLoad(animation)
+        delay(bySeconds: 1.5, dispatchLevel: .background){
+            UIView.animate(withDuration: 50, delay: 0.5, animations: {
+                self.annotation(location: location)
+            })
+        }
+    }
+
     
-    
-    
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         parseData()
         accessData()
         mapIt.delegate = self
-    
+        self.mapIt.delegate = self
+        
     }
     
     

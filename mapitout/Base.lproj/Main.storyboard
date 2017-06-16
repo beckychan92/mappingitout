@@ -44,6 +44,11 @@
                             <constraint firstItem="olj-5o-rDf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="tHI-tV-Mqw"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="mapIt" destination="r78-vd-QQt" id="1fC-E0-C9v"/>
                         <outlet property="timerLabel" destination="olj-5o-rDf" id="HOu-m6-HwV"/>

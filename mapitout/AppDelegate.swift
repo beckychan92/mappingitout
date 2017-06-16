@@ -8,15 +8,18 @@
 
 import UIKit
 import Parse
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+//    var mvc = mapViewController()
+//    var gp = geoPointer()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        gp = mvc.accessData()
         return true
     }
 
